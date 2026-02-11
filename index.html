@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UPI Mandate Test Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        a, button {
+            display: inline-block;
+            padding: 12px 18px;
+            margin-top: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background: #0066ff;
+            color: white;
+        }
+        button:hover, a:hover {
+            opacity: 0.9;
+        }
+        small {
+            display: block;
+            margin-top: 8px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<h2>UPI Mandate Chooser Test</h2>
+
+<!-- Common UPI URL -->
+<script>
+const upiUrl = "upi://mandate?pa=netflix.bdautopay@hdfcbank&pn=NETFLIX&validitystart=11022026&validityend=22122050&am=2000.00&fam=649.00&amrule=MAX&recur=ASPRESENTED&recurvalue=1&recurtype=AFTER&tr=MN2197413926864&cu=INR&mc=4899&tn=Amount%20to%20be%20paid%20now%20is%20Rs%20649.00&mode=04&purpose=14&rev=Y&orgid=000000&txntype=CREATE&tid=MN2197413926864";
+</script>
+
+<!-- OPTION A -->
+<div class="card">
+    <h3>Option A – Direct UPI Link</h3>
+    <a href="upi://mandate?pa=netflix.bdautopay@hdfcbank&pn=NETFLIX&validitystart=11022026&validityend=22122050&am=2000.00&fam=649.00&amrule=MAX&recur=ASPRESENTED&recurvalue=1&recurtype=AFTER&tr=MN2197413926864&cu=INR&mc=4899&tn=Amount%20to%20be%20paid%20now%20is%20Rs%20649.00&mode=04&purpose=14&rev=Y&orgid=000000&txntype=CREATE&tid=MN2197413926864">
+        Open UPI Mandate (upi://)
+    </a>
+    <small>Shows chooser if supported.</small>
+</div>
+
+<!-- OPTION B -->
+<div class="card">
+    <h3>Option B – JS Button Trigger + Fallback</h3>
+    <button id="payBtn">Open UPI Mandate (JS)</button>
+    <small>If nothing happens, alert will show.</small>
+</div>
+
+<!-- OPTION C -->
+<div class="card">
+    <h3>Option C – Android Intent Link</h3>
+    <a href="intent://mandate?pa=netflix.bdautopay@hdfcbank&pn=NETFLIX&validitystart=11022026&validityend=22122050&am=2000.00&fam=649.00&amrule=MAX&recur=ASPRESENTED&recurvalue=1&recurtype=AFTER&tr=MN2197413926864&cu=INR&mc=4899&tn=Amount%20to%20be%20paid%20now%20is%20Rs%20649.00&mode=04&purpose=14&rev=Y&orgid=000000&txntype=CREATE&tid=MN2197413926864#Intent;scheme=upi;action=android.intent.action.VIEW;end">
+        Open UPI Mandate (intent://)
+    </a>
+    <small>Most reliable on Android Chrome.</small>
+</div>
+
+<script>
+document.getElementById("payBtn").addEventListener("click", function () {
+    window.location.href = upiUrl;
+
+    setTimeout(function () {
+        alert("If no UPI app opened, ensure a UPI app is installed and try Option C.");
+    }, 1500);
+});
+</script>
+
+</body>
+</html>
